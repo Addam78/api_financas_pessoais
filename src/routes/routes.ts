@@ -51,7 +51,7 @@ export async function routes(app:FastifyInstance) {
     })
 
     app.post('/insert',{preHandler:[authenticate]},async (req,reply)=>{
-        
+        const iduser = req.user.id
         const {value, description} = req.body
         
         const resuult = await prisma.transactions.create({
@@ -59,7 +59,7 @@ export async function routes(app:FastifyInstance) {
                 type: 'EXPENSE',
                 description ,
                 value,
-                userId:'09876'
+                userId:iduser
             }
         })
     })
