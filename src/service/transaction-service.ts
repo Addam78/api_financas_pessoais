@@ -1,5 +1,5 @@
 import {z} from 'zod'
-import { createTransaction } from '../repositories/transactions-repository'
+import { createTransaction } from '../repositories/transaction-repository'
  
 
 const createUserBodySchema = z.object({

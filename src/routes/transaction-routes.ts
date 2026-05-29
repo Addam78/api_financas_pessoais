@@ -1,4 +1,4 @@
-import {createTransactionController} from '../controller/transaction.controllers'
+import {createTransactionController} from '../controller/transaction-controller'
 import { FastifyInstance } from 'fastify'
 import { authenticate } from '../middleware/autenticate'
 
