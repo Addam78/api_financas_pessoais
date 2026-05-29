@@ -1,12 +1,14 @@
+import 'dotenv/config'
 import dotenv from 'dotenv'
 import fastify from 'fastify'
 import fastifyFormbody from '@fastify/formbody'
 import fastifyCookie from "@fastify/cookie";
-import { routes } from './routes/routes'
+
 import fastifyJwt from "@fastify/jwt";
 
 import { authRoutes } from './routes/auth-routes'
-import { transactionRoutes } from './routes/transactions-routes';
+
+import { transactionRoutes } from './routes/transaction-routes';
 import { userRoutes } from './routes/user-routes';
 
 dotenv.config()
