@@ -5,8 +5,8 @@ import fastifyCookie from "@fastify/cookie";
 import { routes } from './routes/routes'
 import fastifyJwt from "@fastify/jwt";
 
-
-
+import { authRoutes } from './routes/auth-routes'
+import { transactionRoutes } from './routes/transactions-routes';
 
 dotenv.config()
 const app = fastify()
@@ -14,10 +14,13 @@ const app = fastify()
 
 app.register(fastifyFormbody)
 app.register(fastifyJwt, { secret: "sua-secret" });
-app.register(routes)
+
 
 
 app.register(fastifyCookie);
+app.register(authRoutes)
+app.register(transactionRoutes)
+
 
 app.listen({ port:Number(process.env.PORT) || 3333, host: '0.0.0.0' }, (err, address) => {
   if (err) {
@@ -26,3 +29,5 @@ app.listen({ port:Number(process.env.PORT) || 3333, host: '0.0.0.0' }, (err, add
   }
   console.log(`Servidor rodando em ${address}`)
 })
+
+export default app

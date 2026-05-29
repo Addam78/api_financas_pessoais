@@ -1,0 +1,16 @@
+import { PrismaPg } from '@prisma/adapter-pg'
+import pg from 'pg'
+import { PrismaClient } from '../generated/prisma/client'
+
+
+const pool = new pg.Pool({
+  host: 'localhost',
+  port: 5432,
+  user: 'postgres',
+  password: 'gyhkil987%',
+  database: 'api_financas',
+})
+
+const adapter = new PrismaPg(pool)
+
+export const prisma = new PrismaClient({ adapter })
