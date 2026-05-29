@@ -13,7 +13,7 @@ export async function createTransactionController(req: FastifyRequest, reply: Fa
 
    const { type, description, value } = bodySchema.parse(req.body)
 
-   const userId = req.user.id
+   const userId = (req.user as { id: string }).id
 
    const result = await createTransactionService({
     type,
