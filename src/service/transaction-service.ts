@@ -1,5 +1,5 @@
 import {z} from 'zod'
-import { createTransaction, findTransaction } from '../repositories/transaction-repository'
+import { createTransaction, findTransaction,updateTransaction } from '../repositories/transaction-repository'
  
 
 const createUserBodySchema = z.object({
@@ -10,6 +10,17 @@ const createUserBodySchema = z.object({
         })
 
 type CreateTransactionRequest = z.infer<typeof createUserBodySchema >   
+
+
+const updateTransactionSchema = z.object({
+  id: z.string().nonempty(),
+  type: z.enum(['INCOME', 'EXPENSE']),
+  description: z.string().nonempty(),
+  value: z.number(),
+  userId: z.string().nonempty()
+})
+
+type UpdateTransactionRequest = z.infer<typeof updateTransactionSchema>
 
 export async function createTransactionService(data: CreateTransactionRequest) {
   const parsed = createUserBodySchema.parse(data)
@@ -29,3 +40,9 @@ export async function findTransactionService(userId: string) {
   const transactions = await findTransaction(userId)
   return transactions
 }
+
+export async function updateTransactionService (data: UpdateTransactionRequest) {
+  const parsed = updateTransactionSchema.parse(data)
+  const transaction = await updateTransaction(parsed)
+  return transaction
+} 
