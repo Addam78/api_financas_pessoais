@@ -17,6 +17,11 @@ interface UpdateTransactionData {
   userId : string
 }
 
+interface DeleteTransaction {
+  id: string
+  userId : string
+}
+
 export async function createTransaction(data: CreateTransactionData) {
   const transaction = await prisma.transactions.create({
     data: {
@@ -57,6 +62,20 @@ export async function updateTransaction(data:UpdateTransactionData) {
       value: data.value,
     },
   })
+  
 
   return updtateTransaction
+}
+
+
+export async function deleteTransaction(data:DeleteTransaction) {
+      const deleteTransaction = await prisma.transactions.delete({
+      where : {
+        id: data.id,
+        userId:data.userId
+      },
+      
+  })
+
+  return deleteTransaction
 }

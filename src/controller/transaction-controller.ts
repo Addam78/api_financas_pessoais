@@ -1,7 +1,7 @@
 import { authenticate } from "../middleware/autenticate";
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { createTransactionService, findTransactionService,updateTransactionService } from "../service/transaction-service";
+import { createTransactionService, deleteTransactionService, findTransactionService,updateTransactionService } from "../service/transaction-service";
 import '@fastify/jwt'
 
 export async function createTransactionController(req: FastifyRequest, reply: FastifyReply) {
@@ -67,4 +67,18 @@ export async function updateTransactionController(req: FastifyRequest, reply: Fa
   return reply.status(200).send(updateresult)
 
 
+}
+
+
+export async function deleteTransactionController(req: FastifyRequest, reply: FastifyReply) {
+  const paramsSchema = z.object({
+    id: z.string().nonempty(),
+  })
+
+  const { id } = paramsSchema.parse(req.params)
+  const userId = (req.user as { id: string }).id
+
+  await deleteTransactionService({ id, userId })
+
+  return reply.status(204).send()
 }

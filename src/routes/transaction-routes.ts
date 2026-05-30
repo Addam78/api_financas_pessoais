@@ -1,4 +1,4 @@
-import {createTransactionController, findTransactionController,updateTransactionController} from '../controller/transaction-controller'
+import {createTransactionController, deleteTransactionController, findTransactionController,updateTransactionController} from '../controller/transaction-controller'
 import { FastifyInstance } from 'fastify'
 import { authenticate } from '../middleware/autenticate'
 
@@ -13,4 +13,8 @@ export async function findTransactionRoutes(app: FastifyInstance) {
 
 export async function updateTransactionRoutes(app:FastifyInstance) {
     app.patch('/update/:id',{onRequest:[authenticate]} ,updateTransactionController)
+}
+
+export async function deleteTransactionRoutes(app: FastifyInstance) {
+  app.delete('/delete/:id', { onRequest: [authenticate] }, deleteTransactionController)
 }
