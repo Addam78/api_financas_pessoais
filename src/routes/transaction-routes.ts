@@ -1,7 +1,12 @@
-import {createTransactionController} from '../controller/transaction-controller'
+import {createTransactionController, findTransactionController} from '../controller/transaction-controller'
 import { FastifyInstance } from 'fastify'
 import { authenticate } from '../middleware/autenticate'
 
 export async function transactionRoutes(app: FastifyInstance) {
     app.post('/insert',{preHandler: [authenticate]},createTransactionController)
+}
+
+export async function findTransactionRoutes(app: FastifyInstance) {
+    app.get('/search',{preHandler:[authenticate]},findTransactionController)
+    
 }

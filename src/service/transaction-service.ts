@@ -1,5 +1,5 @@
 import {z} from 'zod'
-import { createTransaction } from '../repositories/transaction-repository'
+import { createTransaction, findTransaction } from '../repositories/transaction-repository'
  
 
 const createUserBodySchema = z.object({
@@ -24,3 +24,8 @@ export async function createTransactionService(data: CreateTransactionRequest) {
   return transaction
 }
 
+
+export async function findTransactionService(userId: string) {
+  const transactions = await findTransaction(userId)
+  return transactions
+}

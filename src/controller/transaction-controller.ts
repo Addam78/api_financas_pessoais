@@ -1,7 +1,7 @@
 import { authenticate } from "../middleware/autenticate";
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { createTransactionService } from "../service/transaction-service";
+import { createTransactionService, findTransactionService } from "../service/transaction-service";
 import '@fastify/jwt'
 
 export async function createTransactionController(req: FastifyRequest, reply: FastifyReply) {
@@ -25,4 +25,13 @@ export async function createTransactionController(req: FastifyRequest, reply: Fa
    return reply.status(201).send(result)
 
     
+}
+
+
+export async function findTransactionController(request: FastifyRequest, reply: FastifyReply) {
+  const userId = (request.user as { id: string }).id
+
+  const transactions = await findTransactionService(userId)
+
+  return reply.status(200).send(transactions)
 }

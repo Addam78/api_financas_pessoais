@@ -21,3 +21,18 @@ export async function createTransaction(data: CreateTransactionData) {
 
   return transaction
 }
+
+export async function findTransaction(userId:string) {
+    const transaction = await prisma.transactions.findMany({
+      where: {
+        userId,
+      },
+      select:{
+        description:true,
+        type: true,
+        value: true
+      }
+    })
+
+    return transaction
+}

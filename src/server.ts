@@ -8,7 +8,7 @@ import fastifyJwt from "@fastify/jwt";
 
 import { authRoutes } from './routes/auth-routes'
 
-import { transactionRoutes } from './routes/transaction-routes';
+import { findTransactionRoutes, transactionRoutes } from './routes/transaction-routes';
 import { userRoutes } from './routes/user-routes';
 
 dotenv.config()
@@ -24,7 +24,7 @@ app.register(fastifyCookie);
 app.register(authRoutes)
 app.register(transactionRoutes)
 app.register(userRoutes)
-
+app.register(findTransactionRoutes)
 
 app.listen({ port:Number(process.env.PORT) || 3333, host: '0.0.0.0' }, (err, address) => {
   if (err) {
