@@ -41,6 +41,7 @@ export async function findTransaction(userId:string) {
         userId,
       },
       select:{
+        id: true,
         description:true,
         type: true,
         value: true

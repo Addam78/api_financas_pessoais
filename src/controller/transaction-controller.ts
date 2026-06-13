@@ -78,7 +78,9 @@ export async function deleteTransactionController(req: FastifyRequest, reply: Fa
   const { id } = paramsSchema.parse(req.params)
   const userId = (req.user as { id: string }).id
 
-  await deleteTransactionService({ id, userId })
+  const deleted = await deleteTransactionService({ id, userId })
 
-  return reply.status(204).send()
+  return reply.status(200).send({
+    message: `Transação "${deleted.description}" (ID: ${deleted.id}) deletada com sucesso.`,
+  })
 }
