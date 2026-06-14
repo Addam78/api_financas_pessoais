@@ -18,7 +18,7 @@ export async function loginController(req: FastifyRequest, reply: FastifyReply) 
   reply.setCookie('token', token, {
     httpOnly: true,
     path: '/',
-    secure: false,
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
   })
 

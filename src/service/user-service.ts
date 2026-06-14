@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs'
 import { createUser } from "../repositories/user-repository";
 import {z} from 'zod'
 
@@ -13,9 +14,11 @@ type CreatUserRequest = z.infer<typeof createUserBodySchema >
 export async function createUserService(data: CreatUserRequest) {
   const parsed = createUserBodySchema.parse(data)
 
+  const hashedPassword = await bcrypt.hash(parsed.password, 10)
+
   const newUser = await createUser({
     name:parsed.name,
-    password : parsed.password,
+    password : hashedPassword,
     email : parsed.email
   })
 

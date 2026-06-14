@@ -43,7 +43,7 @@ app.register(scalarApiReference, {
 })
 
 app.register(fastifyFormbody)
-app.register(fastifyJwt, { secret: "sua-secret" });
+app.register(fastifyJwt, { secret: process.env.JWT_SECRET! });
 app.register(fastifyCookie);
 app.register(authRoutes)
 app.register(transactionRoutes)

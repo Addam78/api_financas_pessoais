@@ -49,27 +49,34 @@ git clone https://github.com/addam78/Api_FInancas.git
 cd Api_FInancas
 
 # Instale as dependências
-yarn add 
+yarn install
 
 # Configure as variáveis de ambiente
 cp .env.example .env
-# Edite o .env com sua DATABASE_URL e JWT_SECRET
+# Edite o .env com suas configurações (veja seção abaixo)
 
 # Execute as migrations
-npx prisma migrate dev
+yarn prisma migrate dev
 
 # Inicie o servidor
-yarn run dev
+yarn dev
 ```
 
 ---
 
 ## Variáveis de Ambiente
 
+Copie o `.env.example` para `.env` e preencha com seus dados:
+
 ```env
+PORT=3333
 DATABASE_URL="postgresql://usuario:senha@localhost:5432/api_financas"
-JWT_SECRET="sua_chave_secreta"
+JWT_SECRET="troque_por_uma_chave_longa_e_aleatoria"
 ```
+
+- **DATABASE_URL** — string de conexão do seu PostgreSQL local ou em nuvem
+- **JWT_SECRET** — qualquer string longa e aleatória (ex: `minha_api_financas_2026_xK9mPqL`)
+- **PORT** — porta do servidor (padrão: `3333`)
 
 ---
 
@@ -161,9 +168,9 @@ Authorization: Bearer seu_token_aqui
 ## Scripts
 
 ```bash
-npm run dev       # Inicia em modo desenvolvimento com hot reload
-npx prisma studio # Interface visual do banco de dados
-npx prisma migrate dev # Executa migrations
+yarn dev                  # Inicia em modo desenvolvimento com hot reload
+yarn prisma studio        # Interface visual do banco de dados
+yarn prisma migrate dev   # Executa migrations
 ```
 
 ---
