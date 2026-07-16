@@ -14,6 +14,7 @@ export const loginSchema = {
             description: 'Token JWT gerado com sucesso',
             type: 'object',
             properties: {
+                message: { type: 'string' },
                 token: { type: 'string' },
             },
         },

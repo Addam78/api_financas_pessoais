@@ -1,7 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
 import { authenticateUser } from '../service/auth-service'
-import app from '../server'
 
 const loginBodySchema = z.object({
   email: z.string().nonempty().min(2),
@@ -13,7 +12,7 @@ export async function loginController(req: FastifyRequest, reply: FastifyReply) 
 
   const user = await authenticateUser(email, password)
 
-  const token = app.jwt.sign({ id: user.id, email: user.email })
+  const token = req.server.jwt.sign({ id: user.id, email: user.email })
 
   reply.setCookie('token', token, {
     httpOnly: true,
@@ -22,5 +21,5 @@ export async function loginController(req: FastifyRequest, reply: FastifyReply) 
     sameSite: 'lax',
   })
 
-  return reply.send({ message: 'login realizado' })
+  return reply.send({ message: 'login realizado', token })
 }

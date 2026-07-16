@@ -1,16 +1,14 @@
 import {z} from 'zod'
 import { createTransaction, findTransaction,updateTransaction, deleteTransaction } from '../repositories/transaction-repository'
-import { tr } from 'zod/v4/locales'
- 
 
-const createUserBodySchema = z.object({
+const createTransactionBodySchema = z.object({
             type: z.enum(['INCOME','EXPENSE']),
             description: z.string().nonempty(),
             value:z.number(),
             userId:z.string().nonempty()
         })
 
-type CreateTransactionRequest = z.infer<typeof createUserBodySchema >   
+type CreateTransactionRequest = z.infer<typeof createTransactionBodySchema >
 
 
 const updateTransactionSchema = z.object({
@@ -36,7 +34,7 @@ type DeleteTransactionRequest = z.infer<typeof deleteTransactionSchema>
 
 
 export async function createTransactionService(data: CreateTransactionRequest) {
-  const parsed = createUserBodySchema.parse(data)
+  const parsed = createTransactionBodySchema.parse(data)
 
   const transaction = await createTransaction({
     type: parsed.type,
