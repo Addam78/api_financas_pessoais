@@ -20,7 +20,7 @@ export const createUserSchema = {
                 email: { type: 'string' },
             },
         },
-        400: { description: 'Dados inválidos',       type: 'object', properties: { message: { type: 'string' } } },
-        409: { description: 'E-mail já cadastrado',  type: 'object', properties: { message: { type: 'string' } } },
+        400: { description: 'Dados inválidos',       type: 'object', properties: { error: { type: 'string' }, issues: { type: 'array' } } },
+        409: { description: 'E-mail já cadastrado',  type: 'object', properties: { error: { type: 'string' } } },
     },
 }

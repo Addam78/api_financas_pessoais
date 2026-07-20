@@ -18,6 +18,6 @@ export const loginSchema = {
                 token: { type: 'string' },
             },
         },
-        401: { description: 'Credenciais inválidas', type: 'object', properties: { message: { type: 'string' } } },
+        401: { description: 'Credenciais inválidas', type: 'object', properties: { error: { type: 'string' } } },
     },
 }

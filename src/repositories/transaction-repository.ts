@@ -1,6 +1,8 @@
 // src/repositories/transactions-repository.ts
 
 import { prisma } from '../lib/prisma'
+import { Prisma } from '../generated/prisma/client'
+import { AppError } from '../errors/app-error'
 
 interface CreateTransactionData {
   type: 'INCOME' | 'EXPENSE'
@@ -52,31 +54,39 @@ export async function findTransaction(userId:string) {
 }
 
 export async function updateTransaction(data:UpdateTransactionData) {
-    const updtateTransaction = await prisma.transactions.update({
+  try {
+    return await prisma.transactions.update({
       where : {
         id: data.id,
         userId:data.userId
       },
       data: {
-      type: data.type,
-      description: data.description,
-      value: data.value,
-    },
-  })
-  
-
-  return updtateTransaction
+        type: data.type,
+        description: data.description,
+        value: data.value,
+      },
+    })
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+      throw new AppError('Transação não encontrada', 404)
+    }
+    throw error
+  }
 }
 
 
 export async function deleteTransaction(data:DeleteTransaction) {
-      const deleteTransaction = await prisma.transactions.delete({
+  try {
+    return await prisma.transactions.delete({
       where : {
         id: data.id,
         userId:data.userId
       },
-      
-  })
-
-  return deleteTransaction
+    })
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+      throw new AppError('Transação não encontrada', 404)
+    }
+    throw error
+  }
 }

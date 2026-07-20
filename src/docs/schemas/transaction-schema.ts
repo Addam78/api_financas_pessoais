@@ -29,7 +29,7 @@ export const createTransactionSchema = {
     body: transactionBody,
     response: {
         201: { description: 'Transação criada',  ...transactionResponse },
-        401: { description: 'Não autenticado',   type: 'object', properties: { message: { type: 'string' } } },
+        401: { description: 'Não autenticado',   type: 'object', properties: { error: { type: 'string' } } },
     },
 }
 
@@ -43,7 +43,7 @@ export const findTransactionSchema = {
             type: 'array',
             items: transactionResponse,
         },
-        401: { description: 'Não autenticado', type: 'object', properties: { message: { type: 'string' } } },
+        401: { description: 'Não autenticado', type: 'object', properties: { error: { type: 'string' } } },
     },
 }
 
@@ -65,8 +65,8 @@ export const updateTransactionSchema = {
     },
     response: {
         200: { description: 'Transação atualizada',       ...transactionResponse },
-        401: { description: 'Não autenticado',            type: 'object', properties: { message: { type: 'string' } } },
-        404: { description: 'Transação não encontrada',   type: 'object', properties: { message: { type: 'string' } } },
+        401: { description: 'Não autenticado',            type: 'object', properties: { error: { type: 'string' } } },
+        404: { description: 'Transação não encontrada',   type: 'object', properties: { error: { type: 'string' } } },
     },
 }
 
@@ -80,7 +80,7 @@ export const deleteTransactionSchema = {
     },
     response: {
         200: { description: 'Transação deletada com sucesso', type: 'object', properties: { message: { type: 'string' } } },
-        401: { description: 'Não autenticado',                type: 'object', properties: { message: { type: 'string' } } },
-        404: { description: 'Transação não encontrada',       type: 'object', properties: { message: { type: 'string' } } },
+        401: { description: 'Não autenticado',                type: 'object', properties: { error: { type: 'string' } } },
+        404: { description: 'Transação não encontrada',       type: 'object', properties: { error: { type: 'string' } } },
     },
 }

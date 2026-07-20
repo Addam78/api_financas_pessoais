@@ -86,7 +86,7 @@ JWT_SECRET="troque_por_uma_chave_longa_e_aleatoria"
 
 | Método | Endpoint  | Descrição              | Auth |
 |--------|-----------|------------------------|------|
-| POST   | /create   | Cadastrar novo usuário | Não  |
+| POST   | /users    | Cadastrar novo usuário | Não  |
 
 **Body:**
 ```json
@@ -103,7 +103,7 @@ JWT_SECRET="troque_por_uma_chave_longa_e_aleatoria"
 
 | Método | Endpoint | Descrição            | Auth |
 |--------|----------|----------------------|------|
-| POST   | /login   | Login e geração JWT  | Não  |
+| POST   | /auth/login | Login e geração JWT  | Não  |
 
 **Body:**
 ```json
@@ -132,12 +132,12 @@ Authorization: Bearer seu_token_aqui
 
 | Método | Endpoint       | Descrição                        | Auth |
 |--------|----------------|----------------------------------|------|
-| POST   | /insert        | Criar nova transação             | Sim  |
-| GET    | /search        | Listar transações do usuário     | Sim  |
-| PATCH  | /update/:id    | Atualizar transação por ID       | Sim  |
-| DELETE | /delete/:id    | Deletar transação por ID         | Sim  |
+| POST   | /transactions      | Criar nova transação             | Sim  |
+| GET    | /transactions      | Listar transações do usuário     | Sim  |
+| PATCH  | /transactions/:id  | Atualizar transação por ID       | Sim  |
+| DELETE | /transactions/:id  | Deletar transação por ID         | Sim  |
 
-**POST /insert — Body:**
+**POST /transactions — Body:**
 ```json
 {
   "type": "INCOME",
@@ -146,7 +146,7 @@ Authorization: Bearer seu_token_aqui
 }
 ```
 
-**PATCH /update/:id — Body:**
+**PATCH /transactions/:id — Body:**
 ```json
 {
   "type": "EXPENSE",

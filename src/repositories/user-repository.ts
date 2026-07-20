@@ -1,11 +1,12 @@
 import { prisma } from '../lib/prisma'
-import { PrismaClient } from '../generated/prisma/client'
+import { Prisma } from '../generated/prisma/client'
+import { AppError } from '../errors/app-error'
 
 
 interface CreateUser {
   name    : string
   password :string
-  email  :string     
+  email  :string
 }
 
 
@@ -14,11 +15,18 @@ export async function findUserByEmail(email: string) {
 }
 
 export async function createUser(data:CreateUser) {
-  return prisma.user.create({
-    data:{
-      name: data.name,
-      password: data.password,
-      email: data.email
+  try {
+    return await prisma.user.create({
+      data:{
+        name: data.name,
+        password: data.password,
+        email: data.email
+      }
+    })
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+      throw new AppError('Este e-mail já está cadastrado', 409)
     }
-  })
+    throw error
+  }
 }
