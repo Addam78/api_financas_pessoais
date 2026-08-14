@@ -45,8 +45,8 @@ src/
 
 ```bash
 # Clone o repositório
-git clone https://github.com/addam78/Api_FInancas.git
-cd Api_FInancas
+git clone https://github.com/Addam78/api_financas_pessoais.git
+cd api_financas_pessoais
 
 # Instale as dependências
 yarn install
@@ -178,4 +178,4 @@ yarn prisma migrate dev   # Executa migrations
 ## Autor
 
 Desenvolvido por **Addam Cosmo**  
-GitHub: [@addam78](https://github.com/addam78)
+GitHub: [@Addam78](https://github.com/Addam78)
