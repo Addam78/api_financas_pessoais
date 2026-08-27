@@ -13,6 +13,7 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
+      - run: npx prisma generate
       - run: npm test
 
   test-e2e:
@@ -37,6 +38,7 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
+      - run: npx prisma generate
       - run: npm run test:e2e
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/api_financas
