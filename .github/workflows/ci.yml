@@ -44,3 +44,4 @@ jobs:
       - run: npm run test:e2e
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/api_financas
+          JWT_SECRET: ci_test_secret
