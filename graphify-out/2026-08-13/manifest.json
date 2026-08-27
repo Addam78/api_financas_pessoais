@@ -1,0 +1,142 @@
+{
+  "package.json": {
+    "mtime": 1781480284.6536326,
+    "ast_hash": "73720809af5b7020aa3eeffc1fc9da18",
+    "semantic_hash": "73720809af5b7020aa3eeffc1fc9da18"
+  },
+  "prisma.config.ts": {
+    "mtime": 1780096084.671703,
+    "ast_hash": "444647e41040b623b99346e28373e2b7",
+    "semantic_hash": "444647e41040b623b99346e28373e2b7"
+  },
+  "prisma/migrations/20260526135734_criacao_de_model_use_e_transactions/migration.sql": {
+    "mtime": 1780096084.672701,
+    "ast_hash": "9c1447ef78bfdea71e88a5616d8c8652",
+    "semantic_hash": "9c1447ef78bfdea71e88a5616d8c8652"
+  },
+  "prisma/migrations/20260526205259_init/migration.sql": {
+    "mtime": 1780096184.6978362,
+    "ast_hash": "470ad76d582932120af1d903b25ee34c",
+    "semantic_hash": "470ad76d582932120af1d903b25ee34c"
+  },
+  "prisma/migrations/20260527161449_add_senha_to_user/migration.sql": {
+    "mtime": 1780096184.6982946,
+    "ast_hash": "a018818215a6e6da5ef6efd02748193f",
+    "semantic_hash": "a018818215a6e6da5ef6efd02748193f"
+  },
+  "src/@types/fastify-jwt.d.ts": {
+    "mtime": 1780096214.4875243,
+    "ast_hash": "073724e00bed0a59afa632582c083248",
+    "semantic_hash": "073724e00bed0a59afa632582c083248"
+  },
+  "src/controller/auth-controller.ts": {
+    "mtime": 1784165417.5040557,
+    "ast_hash": "4874125c604640f225efb1efc3c5ba73",
+    "semantic_hash": ""
+  },
+  "src/controller/transaction-controller.ts": {
+    "mtime": 1781371840.8511305,
+    "ast_hash": "088bc8e779eb91581a38bdc68d1a19ab",
+    "semantic_hash": "088bc8e779eb91581a38bdc68d1a19ab"
+  },
+  "src/controller/user-controller.ts": {
+    "mtime": 1780096214.5525231,
+    "ast_hash": "b5be12033b0c877eee0fb7cc4251270f",
+    "semantic_hash": "b5be12033b0c877eee0fb7cc4251270f"
+  },
+  "src/docs/schemas/auth-schema.ts": {
+    "mtime": 1784509291.0642574,
+    "ast_hash": "25d3959e5eabbbef30eeea6243f4f48d",
+    "semantic_hash": ""
+  },
+  "src/docs/schemas/transaction-schema.ts": {
+    "mtime": 1784509300.854419,
+    "ast_hash": "c595bdf35cdeb06bf6540f64f1189f45",
+    "semantic_hash": ""
+  },
+  "src/docs/schemas/user-schema.ts": {
+    "mtime": 1784509292.9002724,
+    "ast_hash": "6289ca1e19b656acb84790e64cbcb0d1",
+    "semantic_hash": ""
+  },
+  "src/lib/prisma.ts": {
+    "mtime": 1780096681.6733098,
+    "ast_hash": "eafe00f57f44b7d059177ffd88633095",
+    "semantic_hash": "eafe00f57f44b7d059177ffd88633095"
+  },
+  "src/middleware/autenticate.ts": {
+    "mtime": 1780096184.7012951,
+    "ast_hash": "c5963340bfeb2814ccfa1b1ba7d94deb",
+    "semantic_hash": "c5963340bfeb2814ccfa1b1ba7d94deb"
+  },
+  "src/repositories/transaction-repository.ts": {
+    "mtime": 1784509147.1364255,
+    "ast_hash": "5f669e08c0175e025e5e04b9e93f6d38",
+    "semantic_hash": ""
+  },
+  "src/repositories/user-repository.ts": {
+    "mtime": 1784509139.7552679,
+    "ast_hash": "723e48a69dabf4c1b4d3b4d5d59b4337",
+    "semantic_hash": ""
+  },
+  "src/routes/auth-routes.ts": {
+    "mtime": 1784509014.7883942,
+    "ast_hash": "6e1114c2423c7c3c860a42fdc6308a5b",
+    "semantic_hash": ""
+  },
+  "src/routes/transaction-routes.ts": {
+    "mtime": 1784509012.81924,
+    "ast_hash": "5f8c521986cb8b93400596a2ff095a6d",
+    "semantic_hash": ""
+  },
+  "src/routes/user-routes.ts": {
+    "mtime": 1784509013.8720837,
+    "ast_hash": "3a65d2a0276923a27f3cba003e505281",
+    "semantic_hash": ""
+  },
+  "src/server.ts": {
+    "mtime": 1784509449.401583,
+    "ast_hash": "a86453c7f91c4c79a8821d845ac3e5d9",
+    "semantic_hash": ""
+  },
+  "src/service/auth-service.ts": {
+    "mtime": 1784509132.1778753,
+    "ast_hash": "ee3c5b0a0a03b5d838df8b68bcb1db18",
+    "semantic_hash": ""
+  },
+  "src/service/transaction-service.ts": {
+    "mtime": 1784164554.18232,
+    "ast_hash": "1266abe1462123e2c85c45115440fc8e",
+    "semantic_hash": ""
+  },
+  "src/service/user-service.ts": {
+    "mtime": 1781480365.800507,
+    "ast_hash": "ded5e5c462be42c864196133e2f4950f",
+    "semantic_hash": "ded5e5c462be42c864196133e2f4950f"
+  },
+  ".yarnrc.yml": {
+    "mtime": 1781479965.6753743,
+    "ast_hash": "344fad6820af55b638d9ac78c2ab7f61",
+    "semantic_hash": "344fad6820af55b638d9ac78c2ab7f61"
+  },
+  "readme.md": {
+    "mtime": 1784509032.2692242,
+    "ast_hash": "c17db615068896f311e01e92de7b60b4",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1783644256.8332057,
+    "ast_hash": "33ecd016a35b85a11c9946575b877cb9",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1783644256.8252196,
+    "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
+    "semantic_hash": ""
+  },
+  "src/errors/app-error.ts": {
+    "mtime": 1784509128.078319,
+    "ast_hash": "a2442a5de228b6dd161bdf60f0a190d2",
+    "semantic_hash": ""
+  }
+}
