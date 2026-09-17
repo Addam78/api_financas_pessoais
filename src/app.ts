@@ -1,4 +1,4 @@
-import fastify from 'fastify'
+import fastify, { type FastifyError } from 'fastify'
 import fastifyFormbody from '@fastify/formbody'
 import fastifyCookie from '@fastify/cookie'
 import fastifyJwt from '@fastify/jwt'
@@ -57,7 +57,7 @@ export function buildApp() {
   app.register(updateTransactionRoutes)
   app.register(deleteTransactionRoutes)
 
-  app.setErrorHandler((error, _req, reply) => {
+  app.setErrorHandler((error: FastifyError, _req, reply) => {
     if (error instanceof AppError) {
       return reply.status(error.statusCode).send({ error: error.message })
     }

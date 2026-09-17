@@ -10,7 +10,7 @@ export const authenticate = async (req: FastifyRequest, reply: FastifyReply) => 
     const token = req.cookies?.token;
     if (!token) return reply.status(401).send({ error: "Não autenticado" });
 
-    const decoded = req.server.jwt.verify(token);
+    const decoded = req.server.jwt.verify<{ id: string; email: string }>(token);
     req.user = decoded;
   }
 };

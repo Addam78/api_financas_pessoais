@@ -1,5 +1,8 @@
 # API Finanças
 
+[![CI](https://github.com/Addam78/api_financas_pessoais/actions/workflows/ci.yml/badge.svg)](https://github.com/Addam78/api_financas_pessoais/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 API REST para gerenciamento de transações financeiras pessoais com autenticação JWT.
 
 ---
@@ -61,6 +64,8 @@ yarn prisma migrate dev
 # Inicie o servidor
 yarn dev
 ```
+
+A API sobe em `http://localhost:3333`, e a documentação interativa (Scalar) fica disponível em `http://localhost:3333/docs`, gerada automaticamente a partir das rotas — não precisa manter nada disso manualmente em sincronia.
 
 ---
 
@@ -157,6 +162,19 @@ Authorization: Bearer seu_token_aqui
 
 ---
 
+## Testes
+
+O projeto tem duas suítes de testes com Vitest: testes unitários (mocks, isolados por camada) e testes end-to-end (aplicação real, contra um PostgreSQL de verdade, cada arquivo rodando em um schema isolado). Ambas rodam automaticamente a cada push via GitHub Actions ([workflow](.github/workflows/ci.yml)).
+
+```bash
+yarn test          # testes unitários
+yarn test:e2e       # testes end-to-end (exige DATABASE_URL configurada)
+yarn test:coverage  # testes unitários com relatório de cobertura
+yarn typecheck      # checagem de tipos do TypeScript
+```
+
+---
+
 ## Segurança
 
 - O `userId` é extraído do token JWT — nunca do body da requisição
@@ -169,9 +187,17 @@ Authorization: Bearer seu_token_aqui
 
 ```bash
 yarn dev                  # Inicia em modo desenvolvimento com hot reload
+yarn start                # Inicia o servidor (produção)
+yarn typecheck             # Checa os tipos do TypeScript sem gerar arquivos
 yarn prisma studio        # Interface visual do banco de dados
 yarn prisma migrate dev   # Executa migrations
 ```
+
+---
+
+## Licença
+
+Este projeto está sob a licença [MIT](LICENSE).
 
 ---
 

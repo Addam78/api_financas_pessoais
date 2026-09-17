@@ -1,10 +1,12 @@
 {
-  "name": "Api_FInancas",
+  "name": "api-financas",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "src/server.ts",
   "license": "MIT",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
