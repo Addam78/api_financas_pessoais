@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: api-financas
+    runtime: node
+    plan: free
+    buildCommand: yarn install --production=false --frozen-lockfile && yarn build
+    startCommand: yarn start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
