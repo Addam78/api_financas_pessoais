@@ -204,9 +204,9 @@ Este projeto está sob a licença [MIT](LICENSE).
 
 ## Deploy
 
-- **API em produção:** `<URL_DA_API>`
-- **Documentação (Swagger/OpenAPI):** `<URL_DA_API>/docs`
-- **Health check:** `<URL_DA_API>/health`
+- **API em produção:** `https://api-financas-pdlx.onrender.com`
+- **Documentação (Swagger/OpenAPI):** `https://api-financas-pdlx.onrender.com/docs`
+- **Health check:** `https://api-financas-pdlx.onrender.com/health`
 
 A API roda no [Render](https://render.com) (Web Service, plano free) e o banco é um PostgreSQL no [Prisma Postgres](https://www.prisma.io/postgres), acessado por conexão TCP direta.
 
