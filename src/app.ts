@@ -7,6 +7,7 @@ import scalarApiReference from '@scalar/fastify-api-reference'
 import { ZodError } from 'zod'
 
 import { authRoutes } from './routes/auth-routes'
+import { healthRoutes } from './routes/health-routes'
 import {
   deleteTransactionRoutes,
   findTransactionRoutes,
@@ -50,6 +51,7 @@ export function buildApp() {
   app.register(fastifyFormbody)
   app.register(fastifyJwt, { secret: process.env.JWT_SECRET! })
   app.register(fastifyCookie)
+  app.register(healthRoutes)
   app.register(authRoutes)
   app.register(transactionRoutes)
   app.register(userRoutes)
