@@ -187,7 +187,8 @@ yarn typecheck      # checagem de tipos do TypeScript
 
 ```bash
 yarn dev                  # Inicia em modo desenvolvimento com hot reload
-yarn start                # Inicia o servidor (produção)
+yarn build                # Gera o Prisma Client e compila para dist/
+yarn start                # Aplica migrations e inicia dist/server.js (produção)
 yarn typecheck             # Checa os tipos do TypeScript sem gerar arquivos
 yarn prisma studio        # Interface visual do banco de dados
 yarn prisma migrate dev   # Executa migrations
@@ -198,6 +199,45 @@ yarn prisma migrate dev   # Executa migrations
 ## Licença
 
 Este projeto está sob a licença [MIT](LICENSE).
+
+---
+
+## Deploy
+
+- **API em produção:** `<URL_DA_API>`
+- **Documentação (Swagger/OpenAPI):** `<URL_DA_API>/docs`
+- **Health check:** `<URL_DA_API>/health`
+
+A API roda no [Render](https://render.com) (Web Service, plano free) e o banco é um PostgreSQL no [Prisma Postgres](https://www.prisma.io/postgres), acessado por conexão TCP direta.
+
+### Variáveis de ambiente
+
+| Variável | Obrigatória | Descrição |
+|---|---|---|
+| `DATABASE_URL` | Sim | Connection string `postgres://...` (TCP direto) |
+| `JWT_SECRET` | Sim | Chave longa e aleatória para assinar os tokens |
+| `PORT` | Não | Porta do servidor (o Render define sozinho; padrão `3333`) |
+| `NODE_ENV` | Não | `development`, `test` ou `production` |
+
+Se `DATABASE_URL` ou `JWT_SECRET` faltarem, a aplicação não sobe e informa qual variável está ausente.
+
+### Rodando localmente
+
+```bash
+yarn install
+cp .env.example .env      # preencha DATABASE_URL e JWT_SECRET
+yarn prisma migrate dev
+yarn dev
+```
+
+### Publicando
+
+1. No [console do Prisma](https://console.prisma.io), crie um banco Prisma Postgres e copie a connection string TCP direta (`postgres://...`).
+2. No Render, crie um **Blueprint** apontando para este repositório; ele lê o [`render.yaml`](render.yaml).
+3. Preencha `DATABASE_URL` e `JWT_SECRET` no painel do Render.
+4. Cada deploy roda `yarn build` e, ao iniciar, `prisma migrate deploy` aplica as migrations automaticamente.
+
+> No plano free do Render o serviço hiberna após inatividade, então a primeira requisição pode levar cerca de 1 minuto.
 
 ---
 
