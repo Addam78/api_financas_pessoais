@@ -3,6 +3,7 @@ services:
     name: api-financas
     runtime: node
     plan: free
+    region: virginia
     buildCommand: yarn install --production=false --frozen-lockfile && yarn build
     startCommand: yarn start
     healthCheckPath: /health
