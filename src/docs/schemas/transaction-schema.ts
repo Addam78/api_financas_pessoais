@@ -29,6 +29,7 @@ export const createTransactionSchema = {
     body: transactionBody,
     response: {
         201: { description: 'Transação criada',  ...transactionResponse },
+        400: { description: 'Dados inválidos',       type: 'object', properties: { error: { type: 'string' }, issues: { type: 'array' } } },
         401: { description: 'Não autenticado',   type: 'object', properties: { error: { type: 'string' } } },
     },
 }
@@ -53,6 +54,7 @@ export const updateTransactionSchema = {
     security: bearerSecurity,
     params: {
         type: 'object',
+        required: ['id'],
         properties: { id: { type: 'string', description: 'ID da transação' } },
     },
     body: {
@@ -65,6 +67,7 @@ export const updateTransactionSchema = {
     },
     response: {
         200: { description: 'Transação atualizada',       ...transactionResponse },
+        400: { description: 'Dados inválidos',       type: 'object', properties: { error: { type: 'string' }, issues: { type: 'array' } } },
         401: { description: 'Não autenticado',            type: 'object', properties: { error: { type: 'string' } } },
         404: { description: 'Transação não encontrada',   type: 'object', properties: { error: { type: 'string' } } },
     },
@@ -76,6 +79,7 @@ export const deleteTransactionSchema = {
     security: bearerSecurity,
     params: {
         type: 'object',
+        required: ['id'],
         properties: { id: { type: 'string', description: 'ID da transação' } },
     },
     response: {

@@ -18,6 +18,7 @@ export const loginSchema = {
                 token: { type: 'string' },
             },
         },
+        400: { description: 'Dados inválidos', type: 'object', properties: { error: { type: 'string' }, issues: { type: 'array' } } },
         401: { description: 'Credenciais inválidas', type: 'object', properties: { error: { type: 'string' } } },
     },
 }
