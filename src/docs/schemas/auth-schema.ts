@@ -22,3 +22,17 @@ export const loginSchema = {
         401: { description: 'Credenciais inválidas', type: 'object', properties: { error: { type: 'string' } } },
     },
 }
+
+export const logoutSchema = {
+    tags: ['Autenticação'],
+    summary: 'Encerra a sessão e revoga o token atual',
+    security: [{ bearerAuth: [] }],
+    response: {
+        200: {
+            description: 'Logout realizado, token revogado',
+            type: 'object',
+            properties: { message: { type: 'string' } },
+        },
+        401: { description: 'Não autenticado', type: 'object', properties: { error: { type: 'string' } } },
+    },
+}

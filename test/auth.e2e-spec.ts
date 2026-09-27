@@ -44,7 +44,7 @@ describe('[POST] /auth/login', () => {
     const response = await app.inject({ method: 'POST', url: '/auth/login', payload: credentials })
 
     const user = await prisma.user.findUniqueOrThrow({ where: { email: credentials.email } })
-    const payload = app.jwt.verify<{ id: string; email: string }>(response.json().token)
+    const payload = app.jwt.verify<{ id: string; email: string; jti: string }>(response.json().token)
 
     expect(payload).toMatchObject({ id: user.id, email: credentials.email })
   })
@@ -93,5 +93,52 @@ describe('[POST] /auth/login', () => {
     })
 
     expect(response.statusCode).toBe(400)
+  })
+})
+
+describe('[POST] /auth/logout', () => {
+  it('revoga o token: uma nova requisição autenticada com ele passa a responder 401', async () => {
+    const login = await app.inject({ method: 'POST', url: '/auth/login', payload: credentials })
+    const token = login.json().token
+
+    const logout = await app.inject({
+      method: 'POST',
+      url: '/auth/logout',
+      headers: { authorization: `Bearer ${token}` },
+    })
+    expect(logout.statusCode).toBe(200)
+    expect(logout.json()).toEqual({ message: 'logout realizado' })
+
+    const afterLogout = await app.inject({
+      method: 'GET',
+      url: '/transactions',
+      headers: { authorization: `Bearer ${token}` },
+    })
+    expect(afterLogout.statusCode).toBe(401)
+  })
+
+  it('um novo login emite um token diferente e ainda válido', async () => {
+    const first = await app.inject({ method: 'POST', url: '/auth/login', payload: credentials })
+    await app.inject({
+      method: 'POST',
+      url: '/auth/logout',
+      headers: { authorization: `Bearer ${first.json().token}` },
+    })
+
+    const second = await app.inject({ method: 'POST', url: '/auth/login', payload: credentials })
+    expect(second.json().token).not.toBe(first.json().token)
+
+    const response = await app.inject({
+      method: 'GET',
+      url: '/transactions',
+      headers: { authorization: `Bearer ${second.json().token}` },
+    })
+    expect(response.statusCode).toBe(200)
+  })
+
+  it('responde 401 sem token', async () => {
+    const response = await app.inject({ method: 'POST', url: '/auth/logout' })
+
+    expect(response.statusCode).toBe(401)
   })
 })
