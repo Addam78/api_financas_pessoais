@@ -1,14 +1,20 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import bcrypt from 'bcryptjs'
-import { authenticateUser } from '../../src/service/auth-service'
+import { authenticateUser, logoutUser } from '../../src/service/auth-service'
 import { findUserByEmail } from '../../src/repositories/user-repository'
+import { revokeToken } from '../../src/repositories/revoked-token-repository'
 import { AppError } from '../../src/errors/app-error'
 
 vi.mock('../../src/repositories/user-repository', () => ({
   findUserByEmail: vi.fn(),
 }))
 
+vi.mock('../../src/repositories/revoked-token-repository', () => ({
+  revokeToken: vi.fn(),
+}))
+
 const findUserByEmailMock = vi.mocked(findUserByEmail)
+const revokeTokenMock = vi.mocked(revokeToken)
 
 function makeUser(overrides: Record<string, unknown> = {}) {
   return {
@@ -73,5 +79,19 @@ describe('authenticateUser', () => {
     findUserByEmailMock.mockRejectedValue(new Error('conexão perdida'))
 
     await expect(authenticateUser('addam@mail.com', 'senha123')).rejects.toThrow('conexão perdida')
+  })
+})
+
+describe('logoutUser', () => {
+  beforeEach(() => {
+    revokeTokenMock.mockReset()
+  })
+
+  it('revoga o jti com a data de expiração informada', async () => {
+    const expiresAt = new Date('2026-01-01T00:00:00Z')
+
+    await logoutUser('token-jti', expiresAt)
+
+    expect(revokeTokenMock).toHaveBeenCalledWith('token-jti', expiresAt)
   })
 })

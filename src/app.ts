@@ -49,7 +49,7 @@ export function buildApp() {
   })
 
   app.register(fastifyFormbody)
-  app.register(fastifyJwt, { secret: process.env.JWT_SECRET! })
+  app.register(fastifyJwt, { secret: process.env.JWT_SECRET!, sign: { expiresIn: '7d' } })
   app.register(fastifyCookie)
   app.register(healthRoutes)
   app.register(authRoutes)
